@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="src.Views.Settings"
+             Title="Settings">
+    <VerticalStackLayout Margin="20,150,20,0">                    
+                
+        <Label Text="Settings"
+               FontSize="24"
+               FontAttributes="Bold"
+               Margin="0,0,0,20"
+               HorizontalTextAlignment="Center"
+                />
+        
+        <VerticalStackLayout Padding="20"
+                             Spacing="30"
+                             >
+            <Button Text="Load Sample Data"
+                    Clicked="OnLoadSampleDataClicked"
+                    TextColor="White"
+                    HeightRequest="60"                
+                    />
+        
+            <Button Text="Clear Sample Data"
+                    Clicked="OnClearSampleDataClicked"
+                    TextColor="White"
+                    HeightRequest="60"
+                    />
+        
+            <Button Text="Clear Database"
+                    Clicked="OnClearDatabaseClicked"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    HeightRequest="60" 
+                    />
+            
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

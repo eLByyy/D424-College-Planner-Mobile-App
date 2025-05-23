@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="src.Views.EditCourse"
+             Title="Edit Course">
+
+    <Grid Padding="20" RowSpacing="10" ColumnSpacing="20"
+          RowDefinitions= "Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+          ColumnDefinitions="*,*">
+        
+        <Label Text="Course Name" 
+               FontSize="14" 
+               Grid.Row="0" 
+               Grid.Column="0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        <Entry x:Name="CourseNameEntry" Placeholder="Enter course name" Grid.Row="0" Grid.Column="1" />
+
+        <Label Text="Status" 
+               Grid.Row="1" 
+               Grid.Column="0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        <Picker x:Name="StatusPicker" Grid.Row="1" Grid.Column="1" Title="Select from dropdown &#8595;">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>In Progress</x:String>
+                    <x:String>Completed</x:String>
+                    <x:String>Dropped</x:String>
+                    <x:String>Plan to take</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label Text="Start Date" 
+               FontSize="14" Grid.Row="2" 
+               Grid.Column="0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        <DatePicker x:Name="StartDatePicker" Grid.Row="2" Grid.Column="1" />
+
+        <Label Text="End Date" 
+               FontSize="14" 
+               Grid.Row="3" 
+               Grid.Column="0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        <DatePicker x:Name="EndDatePicker" Grid.Row="3" Grid.Column="1"/>
+
+        <Label Text="Course Instructor" Grid.Row="4" 
+               Grid.ColumnSpan="2" 
+               Margin="0,20,0,0" 
+               FontAttributes="Bold" 
+               FontSize="16"/>
+        <Entry x:Name="InstructorName" Placeholder="Instructor Name" Grid.Row="5" Grid.Column="0"/>
+        <Entry x:Name="InstructorPhone" Placeholder="Phone Number" Grid.Row="6" Grid.Column="0" Keyboard="Telephone"/>
+        <Entry x:Name="InstructorEmail" Placeholder="Email" Grid.Row="7" Grid.Column="0" Keyboard="Email"/>
+
+        <!--Assessment section-->
+        <Label Text="Assessments"
+               Grid.Row="4"
+               Grid.Column="1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontAttributes="Bold"
+               FontSize="16"
+               Margin="0,20,0,0"/>
+
+        <Picker x:Name="AddAssessmentPicker" 
+                Title="Add an Assessment"
+                SelectedIndexChanged="AssessmentPicker_SelectedIndexChanged"
+                Grid.Row="5"
+                Grid.Column="1">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Objective Assessment</x:String>
+                    <x:String>Performance Assessment</x:String>
+                    <x:String>None</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Picker x:Name="EditAssessmentPicker" 
+                Grid.Row="6" Grid.Column="1" 
+                Title="Edit Assessment"
+                SelectedIndexChanged="EditAssessmentPicker_SelectedIndexChanged">
+        </Picker>
+
+        <Picker x:Name="RemoveAssessmentPicker" 
+                Grid.Row="7" 
+                Grid.Column="1" 
+                Title="Remove Assessment" 
+                TitleColor="Red"
+                SelectedIndexChanged="RemoveAssessmentPicker_SelectedIndexChanged">
+        </Picker>
+        
+        <!--Notes section-->
+        <Border Grid.Row="8"
+                Grid.ColumnSpan="2"
+                BackgroundColor="AntiqueWhite"
+                StrokeThickness="1"
+                Padding="10"
+                HeightRequest="100">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5"/>
+            </Border.StrokeShape>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Optional Notes"
+                       Grid.Row="0"
+                       FontSize="16"
+                       TextDecorations="Underline"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,40"/>
+
+                <Editor x:Name="NotesEditor"
+                        Grid.Row="1"
+                        Placeholder="Enter any notes here"
+                        HeightRequest="80"/>
+            </Grid>
+
+        </Border>
+
+        <!--Save and Cancel buttons-->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Grid.Row="13" Grid.ColumnSpan="2">
+            <Button Text="Cancel" BackgroundColor="Gray" TextColor="White" Clicked="Cancel_OnClicked" WidthRequest="100" HeightRequest="50"/>
+            <Button Text="Save" TextColor="White" Clicked="Save_OnClicked" WidthRequest="100" HeightRequest="50"/>
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="src.Views.CourseSearchResultsModal"
+             Title= "">
+    
+    <VerticalStackLayout Margin="10,0,10,0">
+        <Label x:Name="SearchTitlelabel" 
+               FontSize="24" 
+               FontAttributes="Bold"
+               Margin="5,30,0,0"/>
+        
+        <Label x:Name="TimestampLabel"
+               FontSize="14"
+               TextColor="Gray"
+               Margin="5,0,0,20" />
+               
+        <ScrollView>
+            <Grid x:Name="ResultsGrid"
+                  ColumnDefinitions="*,*,*,*,*"
+                  RowSpacing="9">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Text="Term" FontAttributes="Bold" />
+                <Label Text="Course" FontAttributes="Bold" Grid.Column="1" />
+                <Label Text="Start Date" FontAttributes="Bold" Grid.Column="2" />
+                <Label Text="End Date" FontAttributes="Bold" Grid.Column="3" />
+                <Label Text="Instructor" FontAttributes="Bold" Grid.Column="4" />                
+            </Grid>
+        </ScrollView>
+            
+        <Button Text="Close"
+                Clicked="OnCloseClicked"
+                Margin="40,30,40,0" />            
+    </VerticalStackLayout>
+</ContentPage>

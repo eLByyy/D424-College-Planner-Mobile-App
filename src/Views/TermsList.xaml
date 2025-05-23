@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="src.Views.TermsList">
+
+    <!-- This is the Main Page of the App -->
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Clicked="OnLogoutClicked" />
+    </ContentPage.ToolbarItems>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <SearchBar x:Name="CourseSearchBar"
+                   Placeholder="Quick search course info here..."
+                   SearchButtonPressed="OnSearchButtonPressed" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="550" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Text="Terms"
+                FontSize="30"
+                TextColor="Black"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Grid.Row="0"
+                Margin="0,0,0,10" />
+
+            <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand">
+                <CollectionView ItemsSource="{Binding Terms}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Button HeightRequest="100"
+                                    BackgroundColor="LightSlateGray"
+                                    Clicked="TermButton_OnClicked"
+                                    LineBreakMode="WordWrap">
+                                <Button.Text>
+                                    <MultiBinding StringFormat="{}{0} &#10;&#10; Start-End  &#10; {1:MM/dd/yyyy} - {2:MM/dd/yyyy}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="StartDate" />
+                                        <Binding Path="EndDate" />
+                                    </MultiBinding>
+                                </Button.Text>
+                            </Button>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
+            <BoxView HeightRequest="1"
+                     BackgroundColor="DarkGray"
+                     HorizontalOptions="Fill"
+                     Grid.Row="2" />
+
+            <Button Text="Add Term"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    WidthRequest="100"
+                    HeightRequest="30"
+                    Margin="0,30,0,0"
+                    Command="{Binding AddTermCommand}"
+                    Grid.Row="3"
+                    Clicked="AddTerm_OnClicked" />
+        </Grid>
+
+    </VerticalStackLayout>
+
+</ContentPage>

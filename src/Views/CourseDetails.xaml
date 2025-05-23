@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="src.Views.CourseDetails"
+             Title="Course Details">
+
+    <ScrollView>
+        <Grid Padding="20" RowSpacing="15" ColumnSpacing="20"
+              RowDefinitions="Auto, Auto, Auto,Auto,Auto,Auto"
+              ColumnDefinitions="*,*">
+
+            <!-- Overview Section -->
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Padding="5">
+                <Label Text="Overview" 
+                       TextDecorations="Underline" 
+                       FontSize="20" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20"/>
+                
+                <StackLayout Orientation="Horizontal" Spacing="10" Padding="5" HorizontalOptions="Center">
+                    <Label Text="Status:" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="End"/>
+                    <Label x:Name="StatusLabel" FontSize="14"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="10" Padding="5" HorizontalOptions="Center">
+                    <Label Text="Start Date:" FontSize="14" FontAttributes="Bold"/>
+                    <Label x:Name="StartDateLabel" FontSize="14"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="10" Padding="5" HorizontalOptions="Center">
+                    <Label Text="End Date:" FontSize="14" FontAttributes="Bold"/>
+                    <Label x:Name="EndDateLabel" FontSize="14"/>
+                </StackLayout>
+            </StackLayout>
+
+            <!--Course Instructor Section-->
+            <StackLayout Grid.Row="1" Grid.Column="0" Padding="14">
+                <Label Text="Course Instructor" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextDecorations="Underline"
+                       />
+
+                <StackLayout Orientation="Horizontal" Spacing="10" Padding="5">
+                    <Label Text="Name:" FontSize="14" FontAttributes="Bold" Margin="0,10,0,0"/>
+                    <Label x:Name="InstructorNameLabel" FontSize="14" Margin="0,10,0,0"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="10" Padding="5">
+                    <Label Text="Phone:" FontSize="14" FontAttributes="Bold"/>
+                    <Label x:Name="InstructorPhoneLabel" FontSize="14"/>
+                </StackLayout>
+
+                <Grid Padding="5" ColumnDefinitions="Auto, 160">
+                    <Label Text="Email: " 
+                           FontSize="14" 
+                           FontAttributes="Bold" 
+                           Grid.Column="0"
+                           VerticalOptions="Start"/>
+
+                    <Label x:Name="InstructorEmailLabel" 
+                           FontSize="14"
+                           Grid.Column="1"/>
+                </Grid>
+
+            </StackLayout>
+
+            <!--Assessment Section-->
+            <StackLayout Grid.Row="1" Grid.Column="1" Padding="30,14,14,14">
+                <Label Text="Assessments" FontSize="18" FontAttributes="Bold" TextDecorations="Underline"/>
+                <StackLayout x:Name="AssessmentsStack" Padding="5,10,10,10" Spacing="7"/>
+            </StackLayout>
+            
+            <!--Alerts Section-->
+            <StackLayout Padding="5,-20,0,0" Grid.Row="2">
+                <!-- Course Alert Toggle -->
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Switch x:Name="NotificationSwitch" 
+                            IsToggled="False" 
+                            HorizontalOptions="Start"
+                            Toggled="NotificationSwitch_Toggled"/>
+                    <Label Text="Enable Course Start/End Date Alerts" 
+                           VerticalOptions="Center" 
+                           FontSize="13"/>
+                </StackLayout>
+
+                <!-- Assessment Alert Toggle -->
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Switch x:Name="AssessmentToggleAlert" 
+                            IsToggled="False"
+                            HorizontalOptions="Start"
+                            Toggled="AssessmentToggleAlert_Toggled"/>
+                    <Label Text="Enable Assessment Start/End Date Alerts" 
+                           VerticalOptions="Center"
+                           FontSize="13"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="3">
+                <Label x:Name="NotesLabel"
+                       Text="Optional Notes" 
+                       TextDecorations="Underline" 
+                       FontAttributes="Bold"
+                       FontSize="18"/>
+                
+                <ImageButton Source="share_icon.svg"
+                             HeightRequest="20"
+                             WidthRequest="20"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Margin="20,-7,0,0"
+                             Clicked="ShareNotes_OnClicked"
+                             />
+            </StackLayout>        
+
+            <Border Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="GhostWhite"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 5"
+                    Padding="10"
+                    HeightRequest="100">
+                
+                <ScrollView>
+                    <Label x:Name="NotesContentLabel" 
+                           Text="No notes added." 
+                           FontSize="14" 
+                           LineBreakMode="WordWrap"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Start"/>
+                </ScrollView>
+
+            </Border>
+
+            <!--Buttons-->
+            <StackLayout Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" 
+                         HorizontalOptions="Center" Spacing="40" Margin="0,20,0,0">
+                <Button Text="Remove Course" 
+                        BackgroundColor="IndianRed" 
+                        TextColor="White" 
+                        FontAttributes="Bold"
+                        WidthRequest="150" 
+                        HeightRequest="50"
+                        Clicked="RemoveCourse_OnClicked"/>
+                <Button Text="Edit Course" 
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        WidthRequest="150" 
+                        HeightRequest="50"
+                        Clicked="EditCourse_OnClicked"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
