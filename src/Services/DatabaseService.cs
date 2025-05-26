@@ -391,9 +391,57 @@ namespace src.Services
                 IsSampleData = true
             };
 
+            var course4 = new Courses
+            {
+                TermId = term1.Id,
+                Name = "Software Design",
+                StartDate = new DateTime(2025, 5, 5),
+                EndDate = new DateTime(2025, 6, 3),
+                Status = "Planned",
+                InstructorName = "Anika Patel",
+                InstructorPhone = "555-123-4567",
+                InstructorEmail = "anika.patel@wgu.edu",
+                Notes = "Emphasis on architectural patterns and UML.",
+                UserId = Session.CurrentUser.Id,
+                IsSampleData = true
+            };
+
+            var course5 = new Courses
+            {
+                TermId = term1.Id,
+                Name = "Database Management",
+                StartDate = new DateTime(2025, 6, 10),
+                EndDate = new DateTime(2025, 7, 9),
+                Status = "Not Started",
+                InstructorName = "Ernest Strong",
+                InstructorPhone = "555-222-3333",
+                InstructorEmail = "estrong@wgu.edu",
+                Notes = "Learn SQL, ERDs, and relational database concepts.",
+                UserId = Session.CurrentUser.Id,
+                IsSampleData = true
+            };
+
+            var course6 = new Courses
+            {
+                TermId = term1.Id,
+                Name = "Web Dev Foundations",
+                StartDate = new DateTime(2025, 7, 15),
+                EndDate = new DateTime(2025, 8, 13),
+                Status = "Not Started",
+                InstructorName = "Ethan Johnson",
+                InstructorPhone = "555-456-7890",
+                InstructorEmail = "ejohnson@wgu.edu",
+                Notes = "Covers HTML, CSS, and JavaScript basics.",
+                UserId = Session.CurrentUser.Id,
+                IsSampleData = true
+            };
+
             await _db.InsertAsync(course1);
             await _db.InsertAsync(course2);
             await _db.InsertAsync(course3);
+            await _db.InsertAsync(course4);
+            await _db.InsertAsync(course5);
+            await _db.InsertAsync(course6);
 
             return true;
         }
