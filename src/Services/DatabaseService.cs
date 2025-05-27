@@ -364,7 +364,7 @@ namespace src.Services
             var course2 = new Courses
             {
                 TermId = term1.Id,
-                Name = "Mobile App Development",
+                Name = "Mobile App Dev",
                 StartDate = new DateTime(2025, 4, 2),
                 EndDate = new DateTime(2025, 5, 1),
                 Status = "In Progress",
