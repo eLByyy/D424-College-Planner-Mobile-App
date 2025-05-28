@@ -1,0 +1,41 @@
+﻿#Save this as AutomateDeploy.ps1 then run the file via PowerShell to begin deployment.
+#AutomateDeploy.ps1
+
+#Set variables
+$repoRoot = "C:\Users\jaspe\source\repos\D424-College-Mobile-App-Public"
+$projectPath = "$repoRoot\src"
+$framework = "net9.0-android"
+$publishedApkPath = "$projectPath\bin\Release\$framework\publish"
+$apkFileName = "com.companyname.src-Signed.apk"
+$signedApk = "$repoRoot\$apkFileName"
+
+#Build APK
+Write-Host "`n Building Maui app..."
+dotnet publish "$projectPath" -f $framework -c:Release
+
+#Check if APK was created
+$publishedApk = Get-ChildItem "$publishedApkPath" -Filter *.apk | Select-Object -First 1
+if (-not $publishedApk) {
+    Write-Error "APK not found after build."
+    exit 1
+}
+
+#Copy APK to repo root
+Write-Host "`n Copying APK to repo root as '$apkFileName'..."
+Copy-Item "$publishedApkPath\$publishedApk" "$signedApk" -Force
+
+#Track with Git LFS
+Write-Host "`n Tracking APK with Git LFS..."
+Set-Location "$repoRoot"
+git lfs track "*.apk"
+git add .gitattributes
+
+#Commit and push
+Write-Host "`n Committing and pushing signed APK to remote repo..."
+cd $repoRoot
+git add "$apkFileName"
+git commit -m "Deploy Automation: Updated signed APK"
+git push origin main
+
+Write-Host "`n Deployment complete!"
+pause
