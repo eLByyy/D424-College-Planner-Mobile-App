@@ -7,7 +7,7 @@
     <VerticalStackLayout Padding="20" Spacing="20">
 
         <Label Text="Term Name" FontSize="18" />
-        <Entry x:Name="TermNameEntry" Placeholder="Enter term name" />
+        <Entry x:Name="TermNameEntry" Placeholder="Enter Term name" />
 
         <Label Text="Start Date" FontSize="18" />
         <DatePicker x:Name="StartDatePicker" />
